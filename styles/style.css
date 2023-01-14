@@ -115,14 +115,14 @@ button {
     justify-content: center;
 }
 
-@media screen and (min-width: 800px) {
+/* @media screen and (min-width: 800px) {
 
     segundaSection {
         width: 33%;
     }
-
-    .divList,
-    .divBook {
+    body,
+    #segundaSection,
+    #primerSection {
         margin: 1% auto;
         padding: 3%;
         width: 25%;
@@ -132,12 +132,13 @@ button {
 
 @media screen and (min-width: 1260px) {
 
-    .divList,
-    .divBook {
+    body,
+    #segundaSection,
+    #primerSection {
         margin: 2% auto;
         padding: 3%;
         width: 18%;
     }
 
 
-}
+} */
