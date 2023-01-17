@@ -1,10 +1,6 @@
-//? Nombre completo de la lista
-//! Fecha del libro más antiguo en la listaB <---
-//! Fecha del último libro incorporado
-//! Frecuencia de actualización
-//! Link para poder cargar la lista
 
 //? Pantalla de carga
+
 
 window.addEventListener('load',()=>{
     const containerLoader =document.querySelector('#container');
@@ -12,61 +8,15 @@ window.addEventListener('load',()=>{
     containerLoader.style.visibility = 'hidden'
 })
 
+
 //estructura de la pagina creada con DOM;
 
 
 
 
-
-
-
-
-
-
-//! LISTA BEST SELLERS DE LOS TITULOS
-
-// const bestSellersList = [];
-// async function bestSellers() {
-//     const result = await fetch (`https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
-//     const database = await result.json();
-//     const bestSellersList1 = database.results;
-
-
-//     for (let i = 0; i < bestSellersList1.length; i++) {
-//         bestSellersList.push(bestSellersList1[i].title);
-        
-//     }
-
-//     console.log(bestSellersList);
-// }
-// bestSellers();
-
-
-
-//! ESTA FULLOVERVIEW RECOGE TODOS LOS NOMBRE DE LAS LISTAS
-
-
-
-// async function fullOverView () {
-//     const result = await fetch (`https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
-//     const database = await result.json();
-//     const fullOverView = database.results.lists
-
-//     for (let i = 0; i < fullOverView.length; i++) {
-//         listFullName.push(fullOverView[i].list_name);
-        
-//     }
-
-//     console.log(listFullName);
-
-
-// }
-// fullOverView()
-
-
-
 let mainPrin = document.createElement('main');
 document.body.appendChild(mainPrin);
+
 
 let tarjeta = document.createElement('section');
 tarjeta.setAttribute('id','primerSection')
@@ -74,61 +24,79 @@ mainPrin.appendChild(tarjeta);
 
 
 
-
-
-async function getNames() {
-    //De la api recogemos la informacion que queremos traernos para pintar.
-    const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
-    const database = await result.json();
-    const recogerGenero = database.results;
-//Un for para que recorra todos los titulo que necesitamos en este caso
-    for (let i = 0; i < recogerGenero.length; i++) {
-        containers (recogerGenero[i]);
-    }
-//Colocamos la funcion containers dentro del mismo async para que este a la vez que recorre el nombre de los titulos nos pinte directamente
-//lo que queremos traernos de la API al DOM.
-    function containers(recogerGenero) {
-
-        let containerUno = document.createElement('article');
-        tarjeta.appendChild(containerUno);
+    
+    let tarjeta2 = document.createElement('section');
+    tarjeta2.setAttribute('id','segundaSection')
+    mainPrin.appendChild(tarjeta2);
+    
+    
+    async function getTop() {
+        const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
+        const database = await result.json();
+        const getTops = database.results.books;
         
-        let titulo = document.createElement('h4');
-        titulo.setAttribute('class', 'familia');
+        for (let i = 0; i < getTops.length; i++) {
+            bookContainer(getTops[i]);
+        }
         
-        containerUno.appendChild(titulo);
-        titulo.textContent = recogerGenero.list_name;
+    
 
-        let lastBook = document.createElement('p');
-        containerUno.appendChild(lastBook);
-        // Con las comillas estamos metiendo todo el texto que queramos. El simbolo de dolar y {} sirven para recoger la variable que nosotros
-        //queremos que nos pasen, de esta forma podemos pintar el texto que queramos y seguir recogiendo la variable que necesitemos.
+// async function getNames() {
+//     //De la api recogemos la informacion que queremos traernos para pintar.
+//     const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
+//     const database = await result.json();
+//     const recogerGenero = database.results;
+// //Un for para que recorra todos los titulo que necesitamos en este caso
+//     for (let i = 0; i < recogerGenero.length; i++) {
+//         containers (recogerGenero[i]);
+//     }
+// //Colocamos la funcion containers dentro del mismo async para que este a la vez que recorre el nombre de los titulos nos pinte directamente
+// //lo que queremos traernos de la API al DOM.
+//     function containers(recogerGenero) {
 
-        lastBook.textContent = `Oldest:${recogerGenero.oldest_published_date}`;
+//         let containerUno = document.createElement('article');
+//         tarjeta.appendChild(containerUno);
         
-        let newBook = document.createElement('p');
-        containerUno.appendChild(newBook);
-        newBook.textContent = `Newest:${recogerGenero.newest_published_date}`;
+//         let titulo = document.createElement('h4');
+//         titulo.setAttribute('class', 'familia');
+        
+//         containerUno.appendChild(titulo);
+//         titulo.textContent = recogerGenero.list_name;
 
-        let freqRefresh = document.createElement('p');
-        containerUno.appendChild(freqRefresh);
-        freqRefresh.textContent = `Updated:${recogerGenero.updated}`;
+//         let lastBook = document.createElement('p');
+//         containerUno.appendChild(lastBook);
+//         // Con las comillas estamos metiendo todo el texto que queramos. El simbolo de dolar y {} sirven para recoger la variable que nosotros
+//         //queremos que nos pasen, de esta forma podemos pintar el texto que queramos y seguir recogiendo la variable que necesitemos.
+
+//         lastBook.textContent = `Oldest:${recogerGenero.oldest_published_date}`;
+        
+//         let newBook = document.createElement('p');
+//         containerUno.appendChild(newBook);
+//         newBook.textContent = `Newest:${recogerGenero.newest_published_date}`;
+
+//         let freqRefresh = document.createElement('p');
+//         containerUno.appendChild(freqRefresh);
+//         freqRefresh.textContent = `Updated:${recogerGenero.updated}`;
 
 
-        //! Añadir evento get top
-        let button = document.createElement('button'); 
-        button.type = 'button'; 
-        containerUno.appendChild(button)
-        button.textContent = `Read more >`;
-        recogerGenero.list_name_encoded
-        // getTop.addEventListener(recogerGenero.list_name_encoded);
-        // let getLink = document.createElement('button')
-        // containerUno.appendChild(getLink);
-        // getLink.textContent = 
+//         //! Añadir evento get top
+//         let button = document.createElement('button'); 
+//         button.type = 'button'; 
+//         containerUno.appendChild(button)
+//         button.textContent = `Read more >`;
+//         // recogerGenero.list_name_encoded
+//         // getTop.addEventListener(recogerGenero.list_name_encoded);
 
-    }
 
-}
-getNames()
+        
+//         // let getLink = document.createElement('button')
+//         // containerUno.appendChild(getLink);
+//         // getLink.textContent = 
+
+//     }
+
+// }
+// getNames()
 //? Nombre completo de la lista <---
 //! Fecha del libro más antiguo en la listaB <---
 //! Fecha del último libro incorporado <---
@@ -156,7 +124,7 @@ getNames()
     tarjeta2.setAttribute('id','segundaSection')
     mainPrin.appendChild(tarjeta2);
     
-    
+
     async function getTop() {
         const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
         const database = await result.json();
@@ -166,7 +134,7 @@ getNames()
             bookContainer(getTops[i]);
         }
         
-    
+
         
         function bookContainer(bookList) {
         
@@ -197,10 +165,11 @@ getNames()
             let freqRefresh = document.createElement('p');
             containerDos.appendChild(freqRefresh);
             freqRefresh.textContent = `Description:${bookList.description}`;
-            
-            
+
         }
         // bookContainer()
     }
 
+
 getTop()
+
