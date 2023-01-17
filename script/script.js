@@ -6,11 +6,11 @@
 
 //? Pantalla de carga
 
-// window.addEventListener('load',()=>{
-//     const containerLoader =document.querySelector('#container');
-//     containerLoader.style.opacity=0;
-//     containerLoader.style.visibility = 'hidden'
-// })
+window.addEventListener('load',()=>{
+    const containerLoader =document.querySelector('#container');
+    containerLoader.style.opacity=0;
+    containerLoader.style.visibility = 'hidden'
+})
 
 //estructura de la pagina creada con DOM;
 
@@ -119,11 +119,8 @@ async function getNames() {
         button.type = 'button'; 
         containerUno.appendChild(button)
         button.textContent = `Read more >`;
-        // recogerGenero.list_name_encoded
+        recogerGenero.list_name_encoded
         // getTop.addEventListener(recogerGenero.list_name_encoded);
-
-
-        
         // let getLink = document.createElement('button')
         // containerUno.appendChild(getLink);
         // getLink.textContent = 
@@ -159,7 +156,7 @@ getNames()
     tarjeta2.setAttribute('id','segundaSection')
     mainPrin.appendChild(tarjeta2);
     
-
+    
     async function getTop() {
         const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
         const database = await result.json();
