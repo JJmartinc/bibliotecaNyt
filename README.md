@@ -1,4 +1,4 @@
-<h1 align="center"> NewYork Times Library, API Project </h1>
+<h1 align="center"> NewYork Times Library, API Project </h1>	:closed_book:	:green_book:	:blue_book:
 
 <h3 align="center">Objectives</h3>
 
