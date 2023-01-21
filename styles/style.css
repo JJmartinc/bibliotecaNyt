@@ -5,7 +5,6 @@ h1 {
 }
 
 
-ANIMACION
 *,*:after, *:before{
     margin:0;
     padding:0;
@@ -49,7 +48,6 @@ ANIMACION
     to { transform: rotate (360deg);}
 }
 
-ANIMACION
 
 
 body, p, img, h4 {
@@ -77,6 +75,7 @@ article {
     align-self: center;
     background-color: antiquewhite;
     margin: 5px;
+
 }
 
 
@@ -121,4 +120,35 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+
+/* @media screen and (min-width: 800px) {
+
+    segundaSection {
+        width: 33%;
+    }
+    body,
+    #segundaSection,
+    #primerSection {
+        margin: 1% auto;
+        padding: 3%;
+        width: 25%;
+    }
+
+}
+
+@media screen and (min-width: 1260px) {
+
+    body,
+    #segundaSection,
+    #primerSection {
+        margin: 2% auto;
+        padding: 3%;
+        width: 18%;
+    }
+
+
+} */
+
+
 

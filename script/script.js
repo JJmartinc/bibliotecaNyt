@@ -1,10 +1,6 @@
-//? Nombre completo de la lista
-//! Fecha del libro más antiguo en la listaB <---
-//! Fecha del último libro incorporado
-//! Frecuencia de actualización
-//! Link para poder cargar la lista
 
 //? Pantalla de carga
+
 
 window.addEventListener('load',()=>{
     const containerLoader =document.querySelector('#container');
@@ -12,7 +8,6 @@ window.addEventListener('load',()=>{
     containerLoader.style.visibility = 'hidden'
 })
 
-//estructura de la pagina creada con DOM;
 
 window.onload = function (){
     var contenedor = document.getElementById('contenedor_carga');
@@ -23,8 +18,10 @@ window.onload = function (){
 }
 
 
+
 let mainPrin = document.createElement('main');
 document.body.appendChild(mainPrin);
+
 
 let tarjeta = document.createElement('section');
 tarjeta.setAttribute('id','primerSection')
@@ -32,7 +29,22 @@ mainPrin.appendChild(tarjeta);
 
 
 
-
+    
+    let tarjeta2 = document.createElement('section');
+    tarjeta2.setAttribute('id','segundaSection')
+    mainPrin.appendChild(tarjeta2);
+    
+    
+    async function getTop() {
+        const result = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/combined-print-and-e-book-nonfiction.json?api-key=d2FW1BkxI1nvgpFuUQ2c11nLDHi30dq4`);
+        const database = await result.json();
+        const getTops = database.results.books;
+        
+        for (let i = 0; i < getTops.length; i++) {
+            bookContainer(getTops[i]);
+        }
+        
+    
 
 async function getNames() {
     //De la api recogemos la informacion que queremos traernos para pintar.
@@ -127,7 +139,7 @@ getNames()
             bookContainer(getTops[i]);
         }
         
-    
+
         
         function bookContainer(bookList) {
         
@@ -158,9 +170,11 @@ getNames()
             let freqRefresh = document.createElement('p');
             containerDos.appendChild(freqRefresh);
             freqRefresh.textContent = `Description:${bookList.description}`;
-        
+
         }
         // bookContainer()
     }
 
+
 getTop()
+
